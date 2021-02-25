@@ -6,7 +6,7 @@ wget -O ~/.pb/build.zip https://raw.githubusercontent.com/thepeshka/pb/main/buil
 cd ~/.pb || exit
 unzip build.zip > /dev/null
 rm ./build.zip
-cd $PREV_DIR || exit
+cd "$PREV_DIR" || exit
 echo "PATH=$PATH:~/.pb #ADDED BY PB INSTALLER" >> ~/.bashrc
 echo "#!/bin/bash
 
