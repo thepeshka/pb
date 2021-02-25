@@ -1,0 +1,4 @@
+pb.spec
+/dist
+/.idea
+build.log
