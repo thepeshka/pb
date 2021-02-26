@@ -6,7 +6,7 @@ from subprocess import run
 from os import environ
 
 api_dev_key = environ.get("PB_API_DEV_KEY")
-api_user_key = environ.get("PB_API_USER_KEY", None)
+api_user_key = environ.get("PB_API_USER_KEY") or None
 
 expire_date_choices = ["N", "10M", "1H", "1D", "1W", "2W", "1M", "6M", '1Y']
 formats = ["4cs", "6502acme", "6502kickass", "6502tasm", "abap", "actionscript", "actionscript3", "ada", "aimms",
@@ -36,7 +36,7 @@ formats = ["4cs", "6502acme", "6502kickass", "6502tasm", "abap", "actionscript",
 
 parser = argparse.ArgumentParser(description='paste stdin to pastebin.com')
 parser.add_argument('-n', '--name', dest='api_paste_name', metavar='NAME', help='title of paste',
-                    default="Paste created with https://gist.github.com/thepeshka/6d6e42d5440c4fe46363db0fe6fa8520")
+                    default="Paste created with https://github.com/thepeshka/pb")
 parser.add_argument('-pub', '--public', dest='api_paste_private', action='store_const',
                     const=0, default=1,
                     help='post public paste (default: unlisted)')
@@ -63,7 +63,11 @@ del args['silent']
 
 api_paste_code = ''
 while True:
-    chunk = stdin.read(1024)
+    try:
+        chunk = stdin.read(1024)
+    except KeyboardInterrupt:
+        exit(0)
+        break
     if not chunk:
         break
     api_paste_code = api_paste_code + chunk

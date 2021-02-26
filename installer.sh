@@ -7,12 +7,8 @@ cd ~/.pb || exit
 unzip build.zip > /dev/null
 rm ./build.zip
 cd "$PREV_DIR" || exit
-echo "PATH=$PATH:~/.pb #ADDED BY PB INSTALLER" >> ~/.bashrc
-echo "#!/bin/bash
-
-awk '!/#ADDED BY PB INSTALLER$/' ~/.bashrc > ~/.bashrc
-rm -r ~/.pb
-exec \"\$SHELL\"
-" > ~/.pb/pb-uninstall
-chmod +x ~/.pb/pb-uninstall
-exec "$SHELL"
+echo "Get your keys at https://pastebin.com/doc_api. User key is optional."
+echo "Add these lines to ~/.bashrc:
+  export PATH=\"\$PATH:~/.pb\"
+  export PB_API_DEV_KEY=\"<dev key>\"
+  export PB_API_USER_KEY=\"<dev key>\""
