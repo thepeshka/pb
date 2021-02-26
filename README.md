@@ -2,7 +2,7 @@
 
 ## Prerequisites:
 ```bash
-# apt-get install wget unzip -y
+# apt-get install curl unzip -y
 ```
 
 ## Install
